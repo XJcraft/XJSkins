@@ -43,7 +43,7 @@ public class Https {
 
     protected static HttpURLConnection createUrlConnection(URL url)
             throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)));
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
         connection.setUseCaches(false);
