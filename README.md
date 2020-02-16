@@ -15,3 +15,11 @@
 `/skina change 玩家 皮肤名` -- 改变一个玩家的皮肤
 
 `/skina revert 玩家` 将一个玩家的皮肤恢复为默认
+
+## 原理
+
+参照 https://wiki.vg/Mojang_API#UUID_-.3E_Profile_.2B_Skin.2FCape
+
+1. 通过`nickname`获取`uuid` （*`https://api.mojang.com/profiles/<nickname>`*）
+2. 通过`uuid`获取`textures`[皮肤和披风数据] （*`https://sessionserver.mojang.com/session/minecraft/profile/<uuid>`*）
+3. 将`textures`注入到Player Properties
