@@ -1,0 +1,24 @@
+name: XJSkins
+main: com.xj.skins.bukkit.Skins
+version: 1.0-SNAPSHOT
+author: jim_
+depend: [ProtocolLib]
+
+commands:
+  skin:
+    description: Contains all commands in [XJSkins].
+    usage: 输入 /<command> 查看命令帮助
+    permission: skin.command
+    permission-message: 你没有 <permission> 权限
+  skina:
+    description: Contains all commands in [XJSkins].
+    usage: 输入 /<command> 查看命令帮助
+    permission: skina.command
+    permission-message: 你没有 <permission> 权限
+permissions:
+  skin.command:
+    description: 允许玩家用 <command> 命令
+    default: true
+  skina.command:
+    description: 允许玩家用 <command> 命令
+    default: false
