@@ -5,14 +5,18 @@
 - 切换为正版玩家的皮肤
 - 恢复默认皮肤
 
-## 安装
+## 使用
 
 ### 前置条件
 
 - 服务端`online-mode`为`false`
+- 服务端环境能正常访问网络，能访问 https://api.mojang.com 和 https://sessionserver.mojang.com
 - 依赖插件 [protocollib](https://www.spigotmc.org/resources/protocollib.1997/)
 
+皮肤可在 https://namemc.com/minecraft-skins 查找
+
 ## 指令
+> 皮肤名指正版玩家ID
 ### 普通玩家
 `/skin change 皮肤名` -- 切换为正版皮肤
 
