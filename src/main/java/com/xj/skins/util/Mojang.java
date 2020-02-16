@@ -39,8 +39,14 @@ public class Mojang {
 
     public static ProfileProperty getSkinProperty(String nick) throws IOException {
         Profile profile = Mojang.getProfile(nick);
-        Skins.getInstance().getLogger().info("profile " + profile);
-        return Mojang.getSkin(profile.getId());
+        if (profile == null) {
+            throw new IOException("此正版玩家不存在");
+        }
+        ProfileProperty skin = Mojang.getSkin(profile.getId());
+        if (skin == null) {
+            throw new IOException("此正版玩家未设置皮肤");
+        }
+        return skin;
     }
 
 }

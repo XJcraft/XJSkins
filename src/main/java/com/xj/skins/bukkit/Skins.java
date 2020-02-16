@@ -30,6 +30,7 @@ public class Skins extends JavaPlugin {
     public void onEnable() {
         instance = this;
         storage = new SkinStorage();
+        storage.loadData();
         getCommand("skin").setExecutor(new Commands());
         getCommand("skina").setExecutor(new AdminCommands());
         getServer().getPluginManager().registerEvents(new LoginListener(), this);

@@ -17,12 +17,8 @@ import java.io.IOException;
 public class LoginListener implements Listener {
     @EventHandler
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
-        Skins.getInstance().getLogger().info("AsyncPlayerPreLoginEvent");
         try {
-            ProfileProperty prop = Mojang.getSkinProperty(event.getName());
-            Skins.getInstance().getStorage().setSkin(event.getName(), new SkinProfile(prop));
-            Skins.getInstance().getLogger().info("set skin " + prop);
-
+            Skins.getInstance().getStorage().checkSkin(event.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,7 +27,9 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onLogin(PlayerLoginEvent event) {
         Player player = event.getPlayer();
-        SkinProfile prop = Skins.getInstance().getStorage().getSkin(event.getPlayer().getName());
-        Skins.changeSkin(player, prop.getPlayerSkinProperty());
+        ProfileProperty prop = Skins.getInstance().getStorage().getSkin(player.getName());
+        if (prop != null) {
+            Skins.changeSkin(player, prop);
+        }
     }
 }

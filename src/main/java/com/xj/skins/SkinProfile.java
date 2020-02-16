@@ -1,7 +1,8 @@
 package com.xj.skins;
 
 public class SkinProfile {
-
+    // 皮肤有效时间为12h
+    private static long EXPIRED = 12 * 60 * 60 * 1000;
     private long timestamp;
     private ProfileProperty playerSkinData;
 
@@ -16,7 +17,7 @@ public class SkinProfile {
     }
 
     public boolean isTooDamnOld() {
-        return (System.currentTimeMillis() - timestamp) > (2 * 60 * 60 * 1000);
+        return (System.currentTimeMillis() - timestamp) > EXPIRED;
     }
 
     public long getCreationDate() {
