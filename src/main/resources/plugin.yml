@@ -1,8 +1,9 @@
 name: XJSkins
 main: com.xj.skins.bukkit.Skins
-version: 1.0-SNAPSHOT
+version: 1.0
 author: jim_
 depend: [ProtocolLib]
+api-version: 1.14
 
 commands:
   skin:
@@ -21,4 +22,4 @@ permissions:
     default: true
   skina.command:
     description: 允许玩家用 <command> 命令
-    default: false
+    default: op

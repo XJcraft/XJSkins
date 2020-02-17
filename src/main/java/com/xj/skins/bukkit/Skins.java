@@ -3,7 +3,6 @@ package com.xj.skins.bukkit;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.xj.skins.ProfileProperty;
-import com.xj.skins.SkinProfile;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +23,7 @@ public class Skins extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
+        storage = null;
     }
 
     @Override
