@@ -12,6 +12,8 @@ public class Skins extends JavaPlugin {
 
     private SkinStorage storage;
 
+    private boolean bungeeEnabled;
+
     public static Skins getInstance() {
         return instance;
     }
@@ -30,10 +32,30 @@ public class Skins extends JavaPlugin {
     public void onEnable() {
         instance = this;
         storage = new SkinStorage();
-        storage.loadData();
-        getCommand("skin").setExecutor(new Commands());
-        getCommand("skina").setExecutor(new AdminCommands());
-        getServer().getPluginManager().registerEvents(new LoginListener(), this);
+
+        checkBungeeMode();
+        if (bungeeEnabled) {
+            // TODO
+        } else {
+            storage.loadData();
+            getCommand("skin").setExecutor(new Commands());
+            getCommand("skina").setExecutor(new AdminCommands());
+            getServer().getPluginManager().registerEvents(new LoginListener(), this);
+        }
+    }
+
+
+    private void checkBungeeMode() {
+        try {
+            bungeeEnabled = getServer().spigot().getConfig().getBoolean("settings.bungeecord");
+        } catch (Throwable e) {
+            bungeeEnabled = false;
+        }
+
+        if (bungeeEnabled) {
+            getLogger().info("This plugin is running in Bungee mode!");
+        }
+
     }
 
     public static void changeSkin(Player player, ProfileProperty skin) {
