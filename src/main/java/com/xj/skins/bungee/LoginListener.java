@@ -16,7 +16,7 @@ public class LoginListener implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPreLogin(final LoginEvent event) throws Exception {
+    public void onPreLogin(final LoginEvent event) {
         final PendingConnection connection = event.getConnection();
         final String nickName = connection.getName();
         final Skins instance = Skins.getInstance();
@@ -37,6 +37,10 @@ public class LoginListener implements Listener {
                         instance.getLogger().info(String.format("Inject textures for %s", nickName));
                     }
                     Reflections.setValue(connection, "loginProfile", loginProfile);
+                    ProxiedPlayer player = instance.getProxy().getPlayer(nickName);
+                    if (player != null) {
+                        sendUpdateRequest(player, property);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -53,11 +57,11 @@ public class LoginListener implements Listener {
         if (p.getServer() == null)
             return;
 
-        if (textures == null)
-            return;
-
         try {
-
+            if (textures == null) {
+                p.getServer().sendData("skins:skinchange", Channels.format("SkinClear"));
+                return;
+            }
             p.getServer().sendData("skins:skinchange", Channels.format(
                     "SkinUpdate",
                     (String) Reflections.getValue(textures, "name"),

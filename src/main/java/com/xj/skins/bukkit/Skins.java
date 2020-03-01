@@ -3,8 +3,11 @@ package com.xj.skins.bukkit;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.xj.skins.ProfileProperty;
+import com.xj.skins.util.Channels;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.DataInputStream;
 
 public class Skins extends JavaPlugin {
 
@@ -35,7 +38,20 @@ public class Skins extends JavaPlugin {
 
         checkBungeeMode();
         if (bungeeEnabled) {
-            // TODO
+            Channels.build("skins:skinchange")
+                    .addSubChannel("SkinClear", new Channels.SubChannelHandler() {
+                        public void run(Player player, DataInputStream in) throws Exception {
+                            // TODO
+                        }
+                    })
+                    .addSubChannel("SkinUpdate", new Channels.SubChannelHandler() {
+                        public void run(Player player, DataInputStream in) throws Exception {
+                            Skins.changeSkin(player, new ProfileProperty(in.readUTF(), in.readUTF(), in.readUTF()));
+                        }
+                    })
+                    .register(this);
+
+
         } else {
             storage.loadData();
             getCommand("skin").setExecutor(new Commands());
