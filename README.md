@@ -25,7 +25,7 @@
 ### op
 `/skina change 玩家 皮肤名` -- 改变一个玩家的皮肤
 
-`/skina revert 玩家` 将一个玩家的皮肤恢复为默认
+`/skina revert 玩家` -- 将一个玩家的皮肤恢复为默认
 
 ## 原理
 
