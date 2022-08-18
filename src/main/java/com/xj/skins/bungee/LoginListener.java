@@ -10,6 +10,7 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.connection.LoginResult;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
+import net.md_5.bungee.protocol.Property;
 
 
 public class LoginListener implements Listener {
@@ -32,8 +33,8 @@ public class LoginListener implements Listener {
                     if (property == null) {
                         loginProfile.setProperties(null);
                     } else {
-                        LoginResult.Property textures = new LoginResult.Property("textures", property.getValue(), property.getSignature());
-                        loginProfile.setProperties(new LoginResult.Property[]{textures});
+                        Property textures = new Property("textures", property.getValue(), property.getSignature());
+                        loginProfile.setProperties(new Property[]{textures});
                         instance.getLogger().info(String.format("Inject textures for %s", nickName));
                     }
                     Reflections.setValue(connection, "loginProfile", loginProfile);
